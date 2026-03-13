@@ -11,10 +11,17 @@ pipeline {
     stage('Build Docker') {
       steps {
         script {
-          // declare local variable to avoid pipeline warnings
-          def dockerImage = docker.build("devanshu/devops-first-pipeline:${env.BUILD_ID}")
-          // expose the image name to the next stage
-          env.BUILD_DOCKER_IMAGE = "devanshu/devops-first-pipeline:${env.BUILD_ID}"
+          dockerImage = docker.build("devanshu2905/devops-first-pipeline:${env.BUILD_NUMBER}")
+        }
+      }
+    }
+
+    stage('Push to Docker Hub') {
+      steps {
+        script {
+          docker.withRegistry('https://index.docker.io/v1/', 'dockerhub-creds') {
+            dockerImage.push()
+          }
         }
       }
     }
@@ -22,10 +29,13 @@ pipeline {
     stage('Run tests (inside image)') {
       steps {
         script {
-          // run commands inside the built image in a temporary container
-          docker.image(env.BUILD_DOCKER_IMAGE).inside {
-            sh 'python3 -m pip install -r requirements.txt'
-            sh 'python3 -c "import flask; print(\\"flask import OK\\")"'
+          docker.withRegistry('', '') {  // no login needed here
+            dockerImage.inside {
+              sh """
+                python3 -m pip install -r requirements.txt
+                python3 -c "import flask; print('flask OK')"    
+              """
+            }
           }
         }
       }
@@ -34,7 +44,7 @@ pipeline {
 
   post {
     always {
-      echo "Build ${env.BUILD_ID} finished"
+      echo "Build ${env.BUILD_NUMBER} finished"
     }
   }
 }
