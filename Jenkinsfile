@@ -41,7 +41,18 @@ pipeline {
       }
     }
   }
+    stage('Deploy to Kubernetes') {
+      steps {
+        script {
+            sh """
+            kubectl set image deployment/flask-app \
+            flask-container=devanshu2905/devops-first-pipeline:${env.BUILD_NUMBER}
 
+            kubectl rollout status deployment/flask-app
+            """
+        }
+    }
+}
   post {
     always {
       echo "Build ${env.BUILD_NUMBER} finished"
