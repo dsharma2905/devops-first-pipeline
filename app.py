@@ -9,7 +9,7 @@ REQUEST_COUNT = Counter('http_requests_total', 'Total HTTP Requests')
 @app.route('/')
 def home():
     REQUEST_COUNT.inc()
-    return "Hello from DevOps Pipeline!"
+    return "Hello from DevOps Pipeline!, This is a end to end testing"
 
 @app.route('/metrics')
 def metrics():
