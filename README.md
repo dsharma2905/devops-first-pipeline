@@ -8,3 +8,23 @@ How to run locally:
 Docker:
 docker build -t devanshu2905/devops-first-pipeline:local .
 docker run -p 5000:5000 devanshu2905/devops-first-pipeline:local
+
+Architecture
+
+Developer pushes code → GitHub
+        ↓
+GitHub Webhook
+        ↓
+ngrok tunnel
+        ↓
+Jenkins CI Pipeline
+        ↓
+Docker Image Build
+        ↓
+DockerHub Push
+        ↓
+Kubernetes Deployment
+        ↓
+Prometheus Scraping
+        ↓
+Grafana Monitoring Dashboard
