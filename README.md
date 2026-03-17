@@ -6,5 +6,5 @@ How to run locally:
 - python3 app.py
 
 Docker:
-- docker build -t devanshu/devops-first-pipeline:local .
-- docker run -p 5000:5000 devanshu/devops-first-pipeline:local
+docker build -t devanshu2905/devops-first-pipeline:local .
+docker run -p 5000:5000 devanshu2905/devops-first-pipeline:local
