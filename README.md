@@ -24,6 +24,7 @@ CI/CD Pipeline:
 7. Grafana visualizes metrics
 
 Project Components:
+
 app.py                 → Flask application
 Dockerfile             → Container build instructions
 Jenkinsfile            → CI/CD pipeline configuration
