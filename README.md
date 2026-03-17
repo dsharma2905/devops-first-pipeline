@@ -25,9 +25,9 @@ CI/CD Pipeline:
 
 Project Components:
 
-app.py                 → Flask application
-Dockerfile             → Container build instructions
-Jenkinsfile            → CI/CD pipeline configuration
-deployment.yaml        → Kubernetes deployment manifest
-service.yaml           → Kubernetes service (NodePort)
-flask-servicemonitor.yaml → Prometheus monitoring configuration
+1. app.py                 → Flask application
+2. Dockerfile             → Container build instructions
+3. Jenkinsfile            → CI/CD pipeline configuration
+4. deployment.yaml        → Kubernetes deployment manifest
+5. service.yaml           → Kubernetes service (NodePort)
+6. flask-servicemonitor.yaml → Prometheus monitoring configuration
